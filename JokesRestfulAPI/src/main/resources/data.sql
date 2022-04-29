@@ -1,0 +1,6 @@
+INSERT INTO joke(type,joke)VALUES('clean','What do dentists call their x-rays? Tooth pics!')
+INSERT INTO joke(type,joke)VALUES('clean','Do you want to hear a construction joke? Sorry, I’m still working on it.')
+INSERT INTO joke(type,joke)VALUES('clean','What kind of shorts do clouds wear? Thunderpants')
+INSERT INTO joke(type,joke)VALUES('oneliner','My wife told me to stop impersonating a flamingo. I had to put my foot down. ')
+INSERT INTO joke(type,joke)VALUES('oneliner','I went to buy some camo pants but couldn’t find any.')
+INSERT INTO joke(type,joke)VALUES('oneliner','I failed math so many times at school, I can’t even count.')
