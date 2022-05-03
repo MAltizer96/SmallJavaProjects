@@ -5,16 +5,16 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpHeaders;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.main.model.Joke;
-import com.main.model.JokeList;
+
+import com.main.model.Response;
 
 public class JokeController {
 
@@ -30,33 +30,22 @@ public class JokeController {
 		return list;
 	}
 	
+	//when using this request the json was returning with a _embedded which is part of HAL format see https://stackoverflow.com/questions/27405637/meaning-and-usage-of-embedded-in-hateoas
 	public List<Joke>getJokes(RestTemplate restTemplate){
-		//URI uri = new URI("http://localhost:8080/jokes/search/getByType?type=clean");
-		String urlString = "http://localhost:8080/jokes/search/getAllByType?type=clean";
-		
-		ObjectMapper mapper = new ObjectMapper();
-		ResponseEntity resposne = getResponseList(urlString,HttpMethod.GET,restTemplate);
-		
-		try {
-			List<Joke>list = mapper.readValue(resposne.toString(), new TypeReference<List<Joke>>(){});
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		Response response = restTemplate.exchange("http://localhost:8080/jokes/search/getAllByType?type=clean", HttpMethod.GET,null,new ParameterizedTypeReference<Response>() {}).getBody();
+		List<Joke> list = response.getEmbedded().getJokes();			
+		return list;
 		
 	}
 	
 	
-	public ResponseEntity<List> getResponseList(String url,HttpMethod type,RestTemplate template){
-		return template.exchange(url,type,null,List.class);
-		
-	}
+	
 
 	public Joke getJoke(int jokeIDNumber, RestTemplate restTemplate) throws URISyntaxException {
 		URI uri = new URI("http://localhost:8080/jokes/" + jokeIDNumber);
 		ObjectMapper mapper = new ObjectMapper();
 
+		
 		Joke joke = restTemplate.getForObject(uri, Joke.class);
 		return joke;
 	}
