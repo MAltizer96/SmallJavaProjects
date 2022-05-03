@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Joke implements Serializable{
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)
