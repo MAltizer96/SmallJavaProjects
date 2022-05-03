@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.main.model.Joke;
 
-@RepositoryRestResource(collectionResourceRel = "joke", path = "jokes")
+@RepositoryRestResource(collectionResourceRel = "jokes", path = "jokes")
 
 public interface JokeRep extends JpaRepository<Joke, Long> {
 	
