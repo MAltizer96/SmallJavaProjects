@@ -48,7 +48,7 @@ public class ConsumingRestApplication {
 			
 			Joke joke = restTemplate.getForObject(uri, Joke.class);
 			log.info(controller.getJoke(1).toString());
-			log.info(controller.getJokesArray(restTemplate).toString());
+			log.info(controller.getJokesArray().toString());
 			//log.info(controller.getJokes(restTemplate).toString());
 			
 
