@@ -17,7 +17,10 @@ public class Joke implements Serializable{
 	private String type;
 	private String joke;
 	
-	
+	public Joke(String type, String joke) {
+		this.type = type;
+		this.joke = joke;
+	}
 
 	public Joke() {
 		super();
