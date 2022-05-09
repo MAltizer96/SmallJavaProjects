@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "sping.datasource.url",
+  "type": "java.lang.String",
+  "description": "A description for 'sping.datasource.url'"
+}]}
